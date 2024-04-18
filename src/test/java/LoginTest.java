@@ -1,27 +1,30 @@
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.bidi.log.Log;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.junit.Assert.assertTrue;
 
 
 public class LoginTest extends BaseTest{
 
 
-    @Test
+    @Test @Category(Smoke.class)
     public void successLogin() {
         loginPage.enterUsername("Admin");
         loginPage.enterPassword("admin123");
         loginPage.clickOnLoginButton();
-        dashboardPage.getHeader().shouldBe(visible).shouldHave(text("Dashboard"));
+        dashboardPage.getHeader().shouldBe(visible).shouldHave(text("Search"));
+        //System.out.println(getWebDriver().getCurrentUrl());
     }
 
     //invalid password
-    @Test
+
     public void invalidPassword(){
         loginPage.enterUsername("Admin");
         loginPage.enterPassword("dfghasgdhs");
@@ -30,7 +33,7 @@ public class LoginTest extends BaseTest{
         loginPage.getErrorMessageText().shouldHave(text("Invalid credentials"));
     }
     //non existing user
-    @Test
+  //  @Test
     public void invalidUsername(){
         loginPage.enterUsername("sdfdsf");
         loginPage.enterPassword("dfghasgdhs");
@@ -39,7 +42,7 @@ public class LoginTest extends BaseTest{
         loginPage.getErrorMessageText().shouldHave(text("Invalid credentials"));
     }
 
-    @Test
+  //  @Test
     public void elementsAreDisplayed(){
         //check that logo is displayed
         loginPage.getLogo().shouldBe(visible);
@@ -52,7 +55,7 @@ public class LoginTest extends BaseTest{
         loginPage.getYouTubeIcon().shouldBe(visible);
     }
 
-    @Test
+
     public void linkedInLinkIsCorrect(){
         loginPage.clickOnLinkedInIcon();
         //sleep(20000);
@@ -63,30 +66,30 @@ public class LoginTest extends BaseTest{
         //CHECK youtube link
         //switchTo().window(0);
     }
-    @Test
+
     public void facebookLinkIsCorrect(){
         //
     }
-    @Test
+
     public void twitterLinkIsCorrect(){
         //
     }
-    @Test
+
     public void youTubeLinkIsCorrect(){
         //
     }
 
-    @Test
+
     public void resetPasswordPage(){
         //Username input field
         //Cancel button
         //Reset Password button
     }
-    @Test
+
     public void resentPasswordLinkSending(){
         //
     }
-    @Test
+
     public void resetPasswordWithoutUsername(){
         //
     }

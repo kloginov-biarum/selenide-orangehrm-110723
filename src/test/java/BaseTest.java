@@ -1,3 +1,7 @@
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.After;
 import org.junit.Before;
 
@@ -10,7 +14,15 @@ public class BaseTest {
 
     @Before
     public void setUp(){
+        Configuration.timeout = 10000;
+        Configuration.fastSetValue = true;
+        Configuration.clickViaJs = true;
+        Configuration.browser = "chrome";
+        Configuration.browserSize = "300x300";
+        Configuration.headless = true;
         open(BASE_URL);
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+
     }
 
     @After

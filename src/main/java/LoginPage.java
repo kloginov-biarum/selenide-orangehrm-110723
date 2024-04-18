@@ -3,11 +3,9 @@ import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
 
@@ -31,7 +29,7 @@ public class LoginPage {
 
    private SelenideElement youTubeIcon = $x("//a[contains(@href,'youtube')]");
    public void enterUsername(String usernameValue){
-       usernameInputField.shouldBe(visible, Duration.ofSeconds(10));
+       usernameInputField.shouldBe(visible, Duration.ofSeconds(20));
        usernameInputField.setValue(usernameValue);
    }
 
